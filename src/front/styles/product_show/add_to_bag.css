@@ -1,0 +1,73 @@
+.add-to-bag-container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.favorite-button {
+    width: 100%;
+    background-color: whitesmoke;
+    border: none;
+    padding: 10px 2vw;
+    border: solid black;
+    color: black;
+    stroke: black;
+    stroke-width: 1;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.favorite-button > div {
+    margin-left: 10px;
+}
+
+.add-to-bag-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 2vw;
+    width:100%
+}
+
+.add-to-bag-container svg {
+    color: black;
+    font-weight: bold;
+}
+
+
+@media (max-width: 450px) {
+
+    .favorite-button {
+        width: 20%;
+        display: inline-block;
+        height: 100%;
+        margin-right: 3px;
+        margin-top: 0px;
+        border: none;
+    }
+
+    .add-to-bag-container {
+        flex-direction: row;
+        width: 100vw;
+        margin: 3vw;
+    }
+
+    .add-to-bag-button {
+        width: 79%;
+        background-color: whitesmoke;
+        color: gray;
+        border: none;
+        padding: 10px 2vw;
+    }
+
+    .add-to-bag-container svg {
+        color: gray;
+        stroke: none;
+        stroke-width: 0;
+    }
+
+    .favorite-button > div {
+        display: none;
+    }
+}

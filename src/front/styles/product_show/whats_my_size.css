@@ -1,0 +1,184 @@
+.whats-my-size-main {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0 7vw;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: Helvetica-Now-Text-Regular, Helvetica, Arial, sans-serif;
+  color: #86888b;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-header-text {
+  text-align: center;
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  border-top: none;
+  margin-top: 30px;
+}
+.gender-options {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.gender-options label {
+  cursor: pointer;
+  margin: 0px 30px;
+}
+
+.gender-options input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.gender-options input + div {
+  outline: whitesmoke solid;
+  padding: 5px 30px;
+  width: 150px;
+  text-align: center;
+}
+
+.gender-options input:checked + div {
+  outline: black solid;
+  color: black;
+}
+
+.whats-my-size-button {
+  background-color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: underline;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.whats-my-size-button img {
+  height: 12px;
+  width: 12px;
+  margin-right: 8px;
+}
+
+.hide {
+  display: none;
+}
+
+.measurements input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin-right: 10px;
+}
+
+.measurements {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.measurements > div {
+  width: 50%;
+  text-align: center;
+}
+
+.measurements > div > p {
+  text-align: left;
+  margin-left: 10%;
+}
+
+.measurements > div > input {
+  width: 75%;
+}
+
+.measurements ::placeholder {
+  color: lightgray;
+}
+.half-width {
+  width: 35% !important;
+}
+
+.system-toggle-buttons {
+  text-align: right;
+  margin-right: 30px;
+}
+
+.system-toggle-buttons input {
+  opacity: 0;
+  position: absolute;
+}
+
+.system-toggle-buttons span {
+  margin-right: 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.show-size-button {
+  color: white;
+  background-color: gray;
+  font-size: 18px;
+  width: 70%;
+}
+
+.modal-body > div > p {
+  margin-left: 11%;
+}
+
+.close-button {
+  background-color: white;
+  border: none;
+  font-size: 19px;
+}
+
+a {
+  color: gray;
+}
+
+a:hover {
+  color: gray;
+  cursor: pointer;
+}
+
+.size-header {
+  display: none;
+}
+
+@media (max-width: 450px) {
+  .modal-dialog {
+    position: fixed;
+    left: auto;
+    right: auto;
+    top: 18%;
+    bottom: 0;
+    width: 96vw;
+  }
+
+  .size-header {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+  }
+
+  .whats-my-size-main {
+    justify-content: space-between;
+  }
+}

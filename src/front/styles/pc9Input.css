@@ -1,0 +1,100 @@
+.archiveBackTitle {
+  width: 94px;
+  height: 20px;
+  margin: 0 0 0 6px;
+  font-family: HelveticaLight;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #696969;
+}
+
+.chevron-left {
+  margin-bottom: 6px;
+  color: #696969;
+  padding-left: 1rem;
+  font-size: 12px;
+}
+.row.myLeviJeanTitle {
+  height: 48px;
+}
+
+.MY-LEVIS-JEANS {
+  width: 340px;
+  height: 62px;
+  flex-grow: 0;
+  margin: 11px 25px 0px;
+  font-family: Helvetica;
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #303030;
+}
+.-of-2 {
+  width: 339px;
+  height: 20px;
+  margin: 0px 25px 9px 26px;
+  font-family: Helvetica;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: normal;
+  text-align: center;
+  color: #000;
+}
+
+.Input-the-pc9-code-serial-number-found-on-the-back-of-the-care-tag {
+  width: 341px;
+  height: 46px;
+  margin: 12px 0px 31px 0px;
+  font-family: Helvetica;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000;
+}
+.mb-2 {
+  display: flex;
+  justify-content: center;
+  font-family: Helvetica;
+  font-weight: bold;
+  color: black;
+}
+
+.pc9InputField {
+  width: 133px;
+  height: 30.3px;
+  border: solid 1px #8e8e8e;
+  background-color: #fff;
+}
+
+.pc9Img {
+}
+
+.submitBtn {
+  width: 160px;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 3px;
+  border: solid 1px #f3f3f3;
+  background-color: #f3f3f3;
+}

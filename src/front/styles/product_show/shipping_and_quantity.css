@@ -1,0 +1,105 @@
+.shipping-quantity-container {
+    margin-left: 15px;
+    margin-top: 5vh;
+    max-width: 100vw;
+}
+.shipping-radio {
+    display: flex;
+    justify-content: space-between; 
+    flex-direction: column;
+    margin-top: 2vh;
+}
+
+
+
+
+.shipping-radio label > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.shipping-radio h5 {
+    font-size: 14px;
+}
+
+.shipping-radio h5 + div {
+    font-size: 12px;
+}
+
+.quantity-counter {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.quantity-counter button {
+    margin: 0 10vw;
+}
+
+.quantity-counter button {
+    background-color: inherit;
+    font-weight: bold;
+    border: none;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 450px) {
+    .shipping-radio {
+        flex-direction: row;
+    }
+
+    .shipping-radio input {
+        opacity: 0%;
+        position: absolute;
+        left: 0;
+    }
+
+
+    .shipping-radio > label {
+        width: 45%;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .shipping-radio input + div {
+        outline: lightgray solid;
+    }
+
+    .shipping-radio input:checked + div {
+        outline: solid black;
+    }
+
+    .shipping-radio label > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+    }
+    
+} 
+
+
+
+@media (max-width: 450px) {
+
+    .shipping-radio label{
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 2vh;
+        margin-top: 2vh;
+    }
+
+    .shipping-radio input {
+        margin-right: 3vw;
+    }
+
+    .quantity-container {
+        justify-content: space-between;
+    }
+
+   
+}

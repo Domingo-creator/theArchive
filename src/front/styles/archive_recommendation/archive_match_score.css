@@ -1,0 +1,41 @@
+.archive-score {
+  position: absolute;
+}
+.archive-score > div {
+  /* left: 20px; */
+}
+
+.circle-chart {
+  width: 45px;
+  height: 45px;
+  padding: 2px 12px 13px 14px;
+  transform: rotate(-270deg);
+  border: solid 0.5px #a99;
+  background-color: #fff;
+}
+
+.chart-fill {
+  width: 45px;
+  height: 45px;
+  padding: 2px 12px 13px 14px;
+  transform: rotate(-180deg);
+  background-color: #a8122f;
+}
+
+.fill-chart {
+}
+
+.circle_reactGradientProgress__1_0UG {
+  /* margin-top: -10px; */
+}
+
+.circle_reactGradientProgressPercentageSpan__1HdhL {
+  margin-top: -6px;
+}
+
+#circle_reactGradientProgressPercentage__3mR2b ::before {
+  content: "A";
+  color: #a8122f;
+  padding-top: 10px;
+  margin-bottom: -6px;
+}

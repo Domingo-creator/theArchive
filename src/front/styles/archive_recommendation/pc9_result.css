@@ -1,0 +1,11 @@
+.pc9-result-photo {
+  width: 100vw;
+  height: auto;
+  margin: 20px 0 30px;
+}
+
+.pc9-result-details {
+  position: relative;
+  bottom: 50px;
+  font-size: 2vw;
+}

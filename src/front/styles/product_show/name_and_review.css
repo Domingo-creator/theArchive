@@ -1,0 +1,52 @@
+.backArrow {
+  font-size: 10px;
+}
+
+.product-title {
+  text-transform: uppercase;
+  font-family: InterstateWGL-Black, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+  font-weight: 900;
+  line-height: 24px;
+}
+
+.star {
+  padding-left: 30px;
+}
+
+.star3 {
+  padding-left: 67px;
+}
+
+.numReviews {
+  font-size: 14px;
+  top: 259px;
+  padding-left: 18.5px;
+}
+
+.carousel-indicators {
+  top: 102%;
+}
+.carousel-indicators [data-bs-target] {
+  background-color: black;
+  width: 13px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url(https://www.shareicon.net/data/512x512/2015/08/23/89397_left_512x512.png);
+  height: 24px;
+  width: 23px;
+}
+.carousel-control-next-icon {
+  background-image: url(https://www.shareicon.net/download/2015/10/06/113447_right_512x512.png);
+  height: 32px;
+  width: 31px;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  bottom: 25px;
+}

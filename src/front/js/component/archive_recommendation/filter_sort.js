@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "../../../styles/archive_recommendation/filter_sort.css";
 import FilterModal from "./filter_modal";
 
-const FilterSort = ({ itemCount }) => {
+const FilterSort = ({ itemCount, filterOn }) => {
   const [filterModalOpen, setFilterModalOpen] = useState(false);
 
   const openFilterModal = () => setFilterModalOpen(true);

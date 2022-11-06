@@ -9,7 +9,7 @@
 .tenPx {
   font-size: 10px;
 }
-.recommendation-list {
+.recommendation-list, .product-list {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 19px;

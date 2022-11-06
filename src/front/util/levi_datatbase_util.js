@@ -1,3 +1,4 @@
+import { object } from "prop-types";
 import { leviDatabase } from "./levi_database";
 
 export const ArchiveMatch = (
@@ -127,7 +128,7 @@ const checkMeasurementMatch = (
 ///////
 
 export const MatchPc9 = (pc9 = "362550058") => {
-  return leviDatabase.filter((item) => item.Identifier == pc9)[0];
+  return leviDatabase.find((item) => item.Identifier == pc9);
 };
 
 export const getRandomJeanImage = () => {
@@ -187,3 +188,84 @@ export const paginateRecommendationList = (
   if (curPage.length) paginated.push(curPage);
   return paginated;
 };
+
+
+// Score Distribution in % => sum to 100 //
+const GENDER_SCORE = 25;
+const SIZE_GROUP_SCORE = 25;
+const WAIST_LENGTH_SCORE = 35;
+const FIT_SCORE = 10;
+const STRETCH_SCORE = 5;
+//////////////////////////
+
+const getArchiveMatches = (pc9Input = "362550058", waistInput, lengthInput) => {
+  let matches = [[],[],[],[],[],[]]
+  let pc9Match = leviDatabase.find( product => product.Identifier = pc9Input)
+  let matchArrayMap = {100: 0, 95: 1, 85: 2, 50: 3, 25: 4, 0: 5}
+  for(let product of leviDatabase) {
+    let score = getArchiveScore(pc9Match, product, waistInput, lengthInput);
+    matches[matchArrayMap[score]].push(product)
+  }
+  return matches;
+}
+
+const getArchiveScore = (pc9Match, testProduct, waistInput, lengthInput) => {
+  let score = 0;
+  if(pc9Match.Gender_Taxonomy_US == testProduct.Gender_Taxonomy_US) {
+    score += GENDER_SCORE;
+    if(pc9Match.Size_Group_Taxonomy_US == testProduct.Size_Group_Taxonomy_US) {
+      score += SIZE_GROUP_SCORE
+      if(isMeasurementMatch(pc9Match, testProduct, waistInput, lengthInput)) {
+        score += WAIST_LENGTH_SCORE
+        if(isFitMatch(pc9Match, testProduct)) {
+          score += FIT_SCORE
+          if(pc9Match.Stretch_Taxonomy_US == testProduct.Stretch_Taxonomy_US) {
+            score += STRETCH_SCORE
+          }
+        }
+      }
+    }
+  }
+  return score
+}
+
+
+const isFitMatch = (pc9Match, testProduct) => {
+  let pc9FitTaxonomy = new Set();
+  pc9Match.Fit_Taxonomy_US.split(",").forEach((fit) => {
+    pc9FitTaxonomy.add(fit.trim());
+  });
+  let potentialMatchFit = testProduct.Fit_Taxonomy_US?.split(",") || [];
+  return potentialMatchFit.some((fit) => inputProductFitTaxonomy.has(fit.trim()));
+};
+
+
+const isMeasurementMatch = (pc9Match, testProduct, waistInput, lengthInput) => {
+  let isWaistMatch;
+  let isLengthMatch;
+  if(waistInput) {
+    isWaistMatch = pc9.Waist[waistInput] == testProduct.waist[waistInput]
+  } else {
+    isWaistMatch = isAverageMatch(pc9Match.Waist, testProduct.Waist) 
+  }
+  if(lengthInput) {
+    isLengthMatch = pc9.Length[lengthInput] == testProduct.Length[lengthInput]
+  } else {
+    isLengthMatch = isAverageMatch(pc9Match.Length, testProduct.Length)
+  }
+  return isWaistMatch && isLengthMatch
+};
+
+
+// Return true if the average size is less than .1
+const isAverageMatch = (pc9Sizes, testProductSizes) => {
+  let difference = 0;
+  let comparisons = 0;
+  for(let size in pc9Sizes) {
+    if(size in testProductSizes) {
+      difference += Math.abs(pc9Sizes[size] - testProductSizes[size])
+      comparisons++;
+    }
+  }
+  return difference/comparisons < .1;
+}

@@ -198,7 +198,7 @@ const FIT_SCORE = 10;
 const STRETCH_SCORE = 5;
 //////////////////////////
 
-const getArchiveMatches = (pc9Input = "362550058", waistInput, lengthInput) => {
+export const getArchiveMatches = (pc9Input = "362550058", waistInput, lengthInput) => {
   let matches = [[],[],[],[],[],[]]
   let pc9Match = leviDatabase.find( product => product.Identifier = pc9Input)
   let matchArrayMap = {100: 0, 95: 1, 85: 2, 50: 3, 25: 4, 0: 5}
@@ -209,7 +209,7 @@ const getArchiveMatches = (pc9Input = "362550058", waistInput, lengthInput) => {
   return matches;
 }
 
-const getArchiveScore = (pc9Match, testProduct, waistInput, lengthInput) => {
+export const getArchiveScore = (pc9Match, testProduct, waistInput, lengthInput) => {
   let score = 0;
   if(pc9Match.Gender_Taxonomy_US == testProduct.Gender_Taxonomy_US) {
     score += GENDER_SCORE;
@@ -236,7 +236,7 @@ const isFitMatch = (pc9Match, testProduct) => {
     pc9FitTaxonomy.add(fit.trim());
   });
   let potentialMatchFit = testProduct.Fit_Taxonomy_US?.split(",") || [];
-  return potentialMatchFit.some((fit) => inputProductFitTaxonomy.has(fit.trim()));
+  return potentialMatchFit.some((fit) => pc9FitTaxonomy.has(fit.trim()));
 };
 
 
@@ -244,19 +244,19 @@ const isMeasurementMatch = (pc9Match, testProduct, waistInput, lengthInput) => {
   let isWaistMatch;
   let isLengthMatch;
   if(waistInput) {
-    isWaistMatch = pc9.Waist[waistInput] == testProduct.waist[waistInput]
+    isWaistMatch = pc9Match.Waist[waistInput] == testProduct.waist[waistInput]
   } else {
     isWaistMatch = isAverageMatch(pc9Match.Waist, testProduct.Waist) 
   }
   if(lengthInput) {
-    isLengthMatch = pc9.Length[lengthInput] == testProduct.Length[lengthInput]
+    isLengthMatch = pc9Match.Length[lengthInput] == testProduct.Length[lengthInput]
   } else {
     isLengthMatch = isAverageMatch(pc9Match.Length, testProduct.Length)
   }
   return isWaistMatch && isLengthMatch
 };
 
-
+// used for filter
 // Return true if the average size is less than .1
 const isAverageMatch = (pc9Sizes, testProductSizes) => {
   let difference = 0;

@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import "../../../styles/archive_recommendation/filter_sort.css";
-import FilterModal from "./filter_modal";
+import FilterModal from "./filter_modal/filter_modal";
 
-const FilterSort = ({ itemCount, filterOn }) => {
+const FilterSort = ({ itemCount, archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Match }) => {
   const [filterModalOpen, setFilterModalOpen] = useState(false);
 
   const openFilterModal = () => setFilterModalOpen(true);
@@ -22,6 +22,10 @@ const FilterSort = ({ itemCount, filterOn }) => {
       <FilterModal
         filterModalOpen={filterModalOpen}
         closeFilterModal={closeFilterModal}
+        archiveFilterOn={archiveFilterOn}
+        setArchiveFilterOn={setArchiveFilterOn}
+        pc9Match={pc9Match}
+        setPc9Match={setPc9Match}
       />
     </div>
   );

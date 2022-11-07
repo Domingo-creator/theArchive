@@ -1,3 +1,12 @@
+.filter-modal {
+    position: absolute;
+    z-index: 1000;
+    height: 100vh;
+    background-color: gray;
+    left: 0;
+    width: 30vw;
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;

@@ -4,7 +4,14 @@
     height: 100vh;
     background-color: gray;
     left: 0;
-    width: 30vw;
+    width: 50vw;
+    padding-top: 50px;
+}
+
+.modal-close-button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
 }
 
 /* The switch - the box around the slider */
@@ -68,4 +75,9 @@
   
   .slider.round:before {
     border-radius: 50%;
+  }
+
+  .link {
+    color: blue;
+    text-decoration: underline;
   }

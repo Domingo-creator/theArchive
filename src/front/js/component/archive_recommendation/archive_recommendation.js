@@ -9,9 +9,9 @@ import RetiredFavorite from "./retired_favorite";
 
 const ArchiveRecommendation = ({}) => {
   const { store, actions } = useContext(Context);
-  const pc9 = store.pc9[0]?.pc9Input;
+  const pc9 = store.pc9[0]?.pc9Input || 'A15600003';  //default set. refactor later
   const [matchingJean, setMatchingJean] = useState(MatchPc9(pc9));
-  console.log("store", store);
+  
   return (
     <div>
       <ArchiveHeader />

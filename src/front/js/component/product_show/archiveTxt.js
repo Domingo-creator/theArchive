@@ -3,7 +3,7 @@ import { Context } from "../../store/appContext";
 import { Link, useLocation } from "react-router-dom";
 import { leviDatabase } from "../../../util/levi_database";
 
-function ArchiveTxt() {
+function ArchiveTxt({archiveScore}) {
   const location = useLocation();
   const { jean } = location.state;
   const { store, actions } = useContext(Context);
@@ -19,7 +19,7 @@ function ArchiveTxt() {
       return (
         <div>
           <p>
-            This item is a<span className="fw-bold"> {jean.match}% </span>
+            This item is a<span className="fw-bold"> {archiveScore}% </span>
             match <br />
             as on overall fit, the waist <br /> should fit just right.
           </p>
@@ -29,7 +29,7 @@ function ArchiveTxt() {
       return (
         <div>
           <p>
-            This item is a<span className="fw-bold"> {jean.match}% </span>
+            This item is a<span className="fw-bold"> {archiveScore}% </span>
             match <br />
             as on overall fit, but the waist <br /> may be on the looser side.
           </p>
@@ -39,7 +39,7 @@ function ArchiveTxt() {
       return (
         <div>
           <p>
-            This item is a<span className="fw-bold"> {jean.match}% </span>
+            This item is a<span className="fw-bold"> {archiveScore}% </span>
             match <br />
             as on overall fit, but the waist <br /> may be on the tighter side.
           </p>

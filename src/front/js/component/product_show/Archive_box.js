@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import "../../styles/archiveBox.css";
-import MatchBar from "./product_show/matchBar";
+import "../../../styles/archiveBox.css";
+import MatchBar from "./matchBar";
 import { Link, useLocation } from "react-router-dom";
-import ArchiveMatchScore from "./product_index/archive_match_score";
-import ArchiveTxt from "./product_show/archiveTxt";
+import ArchiveMatchScore from "../product_index/archive_match_score";
+import ArchiveTxt from "./archiveTxt";
 import { CircleProgress } from "react-gradient-progress";
-import { getArchiveScore, MatchPc9 } from "../../util/levi_datatbase_util";
-import { Context } from "../store/appContext";
+import { getArchiveScore, MatchPc9 } from "../../../util/levi_datatbase_util";
+import { Context } from "../../store/appContext";
 
 const ArchiveBox = ({jean, pc9Match}) => {
   // const location = useLocation();
@@ -24,7 +24,7 @@ const ArchiveBox = ({jean, pc9Match}) => {
       <div className="d-flex p-3">
         <div className="h6 me-4">
           <p className="fw-bold">Archive</p>
-          <ArchiveTxt />
+          <ArchiveTxt archiveScore={archiveScore}/>
         </div>
 
         <div className="p-1" id="background">

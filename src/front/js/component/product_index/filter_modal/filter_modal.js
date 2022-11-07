@@ -33,11 +33,13 @@ const FilterModal = ({ filterModalOpen, closeFilterModal, archiveFilterOn, setAr
     actions.addLength(lengthInput);
     setPc9Match(MatchPc9(pc9Input))
     setArchiveFormOpen(false)
+    setArchiveFilterOn(true);
     // closeFilterModal();
   }
 
   return (
     <div className={filterModalOpen ? "filter-modal" : "hide"}>
+      <button className='modal-close-button' onClick={closeFilterModal}>X</button>
       {archiveFormOpen ? 
         <form onSubmit={(e) => submitForm(e)}>
           <input
@@ -65,11 +67,11 @@ const FilterModal = ({ filterModalOpen, closeFilterModal, archiveFilterOn, setAr
           <></>
       }
 
-      {pc9Match ?
+      {!archiveFormOpen && pc9Match ? 
           <div>
             <div>
               You have selected {pc9Match.Product_Name_Taxonomy_US} in size {waistInput} x {lengthInput} as your best fitting jeans.
-              <span onClick={resetArchiveForm}>Click here</span> to change your best fitting jeans.
+              <span className='link' onClick={resetArchiveForm}>Click here</span> to change your best fitting jeans.
             </div>
             <div className='filter-switch'>
               <label class="switch">

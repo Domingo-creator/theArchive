@@ -11,7 +11,7 @@ import WhatsMySize from "../component/product_show/whats_my_size";
 import { Footer } from "../component/footer";
 import ProductPrice from "../component/product_show/product_price";
 import ShippingAndQuantity from "../component/product_show/shipping_and_quantity";
-import ArchiveBox from "../component/Archive_box";
+import ArchiveBox from "../component/product_show/Archive_box";
 import { Link, useLocation } from "react-router-dom";
 import { getArchiveScore } from "../../util/levi_datatbase_util";
 

@@ -127,7 +127,7 @@ const checkMeasurementMatch = (
 // );
 ///////
 
-export const MatchPc9 = (pc9 = "362550058") => {
+export const MatchPc9 = (pc9) => {
   return leviDatabase.find((item) => item.Identifier == pc9);
 };
 
@@ -211,6 +211,8 @@ export const getArchiveMatches = (pc9Input = "362550058", waistInput, lengthInpu
 
 export const getArchiveScore = (pc9Match, testProduct, waistInput, lengthInput) => {
   let score = 0;
+  console.log(pc9Match, testProduct)
+  console.log(pc9Match.Size_Group_Taxonomy_US == testProduct.Size_Group_Taxonomy_US)
   if(pc9Match.Gender_Taxonomy_US == testProduct.Gender_Taxonomy_US) {
     score += GENDER_SCORE;
     if(pc9Match.Size_Group_Taxonomy_US == testProduct.Size_Group_Taxonomy_US) {
@@ -244,7 +246,7 @@ const isMeasurementMatch = (pc9Match, testProduct, waistInput, lengthInput) => {
   let isWaistMatch;
   let isLengthMatch;
   if(waistInput) {
-    isWaistMatch = pc9Match.Waist[waistInput] == testProduct.waist[waistInput]
+    isWaistMatch = pc9Match.Waist[waistInput] == testProduct.Waist[waistInput]
   } else {
     isWaistMatch = isAverageMatch(pc9Match.Waist, testProduct.Waist) 
   }

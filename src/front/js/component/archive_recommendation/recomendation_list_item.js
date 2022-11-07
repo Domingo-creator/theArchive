@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../../styles/archive_recommendation/recommendation_list_item.css";
 import { getRandomJeanImage } from "../../../util/levi_datatbase_util";
-import ArchiveMatchScore from "./archive_match_score";
+import ArchiveMatchScore from "../product_index/archive_match_score";
 
 const RecommendationListItem = ({ product = {} }) => {
   if (!("ImgFront" in product)) product.ImgFront = getRandomJeanImage();

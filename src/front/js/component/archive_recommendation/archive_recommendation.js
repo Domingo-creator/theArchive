@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { ArchiveMatch, MatchPc9 } from "../../../util/levi_datatbase_util";
 import ArchiveHeader from "./archive_header";
-import PageNavigation from "./page_navigation";
+import PageNavigation from "../product_index/page_navigation";
 import Pc9Result from "./pc9_result";
 import { Context } from "../../store/appContext";
 import RecommendationList from "./recommendation_list";

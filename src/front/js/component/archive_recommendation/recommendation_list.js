@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import RecommendationListItem from "./recomendation_list_item";
 import "../../../styles/archive_recommendation/recommendation_list.css";
 import { paginateRecommendationList } from "../../../util/levi_datatbase_util";
-import PageNavigation from "./page_navigation";
-import FilterSort from "./filter_sort";
+import PageNavigation from "../product_index/page_navigation";
+import FilterSort from "../product_index/filter_sort";
 import { Context } from "../../store/appContext";
 
 const RecommendationList = ({ pc9, numPerPage = 6 }) => {

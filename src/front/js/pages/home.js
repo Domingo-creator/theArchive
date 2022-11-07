@@ -13,10 +13,11 @@ import ProductPrice from "../component/product_show/product_price";
 import ShippingAndQuantity from "../component/product_show/shipping_and_quantity";
 import ArchiveBox from "../component/Archive_box";
 import { Link, useLocation } from "react-router-dom";
+import { getArchiveScore } from "../../util/levi_datatbase_util";
 
 export const Home = ({}) => {
   const location = useLocation();
-  const { jean } = location.state;
+  const { jean, pc9Match } = location.state;
 
   return (
     <div className="container px-0 ">
@@ -46,8 +47,11 @@ export const Home = ({}) => {
       </div>
 
       <br />
-
-      <ArchiveBox />
+      {pc9Match ?
+          <ArchiveBox jean={jean} pc9Match={pc9Match}/>
+        :
+          <></>
+      }
 
       <div className="row sizeColor">
         <Size_and_color jean={jean} />

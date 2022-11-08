@@ -17,7 +17,7 @@ const PageNavigation = ({ numPages, curPage, setCurPage }) => {
   return (
     <ul>
       {makePageArray().map((pageNum) => (
-        <li onClick={(e) => updatePageNumber(e)} value={pageNum - 1}>
+        <li onClick={(e) => updatePageNumber(e)} value={pageNum - 1} className={curPage + 1 === pageNum ? 'current-page' : ''}>
           {pageNum}
         </li>
       ))}

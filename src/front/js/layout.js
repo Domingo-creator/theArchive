@@ -34,14 +34,14 @@ const Layout = () => {
             <Route element={<ArchiveRecommendation />} path="/archive" />
             <Route element={<ProductIndex />} path="/jeans" />
             <Route
-              element=<WaistLengthInput
+              element={<WaistLengthInput
                 actionWaist={actions.addWaist}
                 actionLength={actions.addLength}
-              />
+              />}
               path="/"
             />
-            <Route element=<Pc9Input actions={actions.addPc9} /> path="/pc9" />
-            <Route element=<LeviBackend /> path="/leviBackend" />
+            <Route element={<Pc9Input actions={actions.addPc9} />} path="/pc9" />
+            <Route element={<LeviBackend />} path="/leviBackend" />
 
             <Route element={<h1>Not found!</h1>} />
           </Routes>

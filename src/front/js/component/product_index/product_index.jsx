@@ -12,6 +12,7 @@ import RetiredFavorite from '../archive_recommendation/retired_favorite';
 const ProductIndex = ({}) => {
     const { store, actions } = useContext(Context);
     const pc9 = store.pc9[0]?.pc9Input  || store.pc9[0];
+    console.log("STORE", store.pc9[0], pc9)
     const [pc9Match, setPc9Match] = useState(MatchPc9(pc9));
     const [archiveFilterOn, setArchiveFilterOn] = useState( pc9 ? 
         sessionStorage.getItem('archiveFilterOn') === 'true' ? true : false 

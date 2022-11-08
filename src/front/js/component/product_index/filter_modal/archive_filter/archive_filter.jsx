@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { MatchPc9 } from '../../../../../util/levi_datatbase_util';
 import { Context } from '../../../../store/appContext';
 import ArchiveModalForm from './archive_form';
+import '../../../../../styles/product_index/archive_filter.css'
+
 
 const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Match, closeFilterModal}) => {
     const { store, actions } = useContext(Context);
@@ -9,7 +11,8 @@ const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Ma
     const [lengthInput, setLengthInput] = useState(store.length[0]);
     const [pc9Input, setPc9Input] = useState(store.pc9[0]?.pc9Input || store.pc9[0]);
     const [archiveFormOpen, setArchiveFormOpen] = useState(!store.pc9[0]?.pc9Input && !store.pc9[0])
-    
+    const [archiveErrors, setArchiveErrors] = useState([]);
+
     const updateWaistInput = e => setWaistInput(e.target.value)
     const updateLengthInput = e => setLengthInput(e.target.value)
     const updatePc9Input = e => setPc9Input(e.target.value)
@@ -27,29 +30,53 @@ const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Ma
 
     const submitForm = (e) => {
         e.preventDefault();
-        actions.addPc9(pc9Input);
-        actions.addWaist(waistInput);
-        actions.addLength(lengthInput);
-        setPc9Match(MatchPc9(pc9Input));
-        setArchiveFormOpen(false)
-        setArchiveFilterOn(true);
-        closeFilterModal();
-      }
+        let matchedPc9 = MatchPc9(pc9Input)
+        if(checkValidInputs(matchedPc9)) {
+            actions.addPc9(pc9Input);
+            actions.addWaist(waistInput);
+            actions.addLength(lengthInput);
+            setPc9Match(matchedPc9);
+            setArchiveFormOpen(false)
+            setArchiveFilterOn(true);
+            closeFilterModal();
+        } 
+    }
 
+    const checkValidInputs = (matchedPc9) => {
+        let errors = []
+        //validate pc9
+        if(matchedPc9 == undefined) errors.push('No matching PC9 found')
+        //validate waist
+        if(waistInput == undefined) errors.push('Please enter waist size')
+        //validate length
+        if(lengthInput == undefined) errors.push('Please enter length')
+        setArchiveErrors(errors);
+        console.log(errors)
+        return errors.length ? false : true;
+    }
+
+    console.log(archiveErrors.map( error => error))
     return(
         <div>
             {archiveFormOpen ? 
-                <ArchiveModalForm 
-                    waistInput={waistInput}
-                    updateWaistInput={updateWaistInput}
-                    lengthInput={lengthInput}
-                    updateLengthInput={updateLengthInput}
-                    pc9Input={pc9Input}
-                    updatePc9Input={updatePc9Input}
-                    closeArchiveForm={closeArchiveForm}
-                    pc9Match={pc9Match}
-                    submitForm={submitForm}
-                />
+                <div>
+                    <div className='archive-modal-form-errors'>
+                        {archiveErrors.map( error => (
+                            <div>ERROR: {error}</div>
+                        ))}
+                    </div>
+                    <ArchiveModalForm 
+                        waistInput={waistInput}
+                        updateWaistInput={updateWaistInput}
+                        lengthInput={lengthInput}
+                        updateLengthInput={updateLengthInput}
+                        pc9Input={pc9Input}
+                        updatePc9Input={updatePc9Input}
+                        closeArchiveForm={closeArchiveForm}
+                        pc9Match={pc9Match}
+                        submitForm={submitForm}
+                    />
+                </div>
             :
                 <></>
             }

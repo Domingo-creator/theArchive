@@ -5,7 +5,7 @@ import ArchiveModalForm from './archive_form';
 import '../../../../../styles/product_index/archive_filter.css'
 
 
-const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Match, closeFilterModal}) => {
+const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Match, closeFilterModal, orderProducts}) => {
     const { store, actions } = useContext(Context);
     const [waistInput, setWaistInput] = useState(store.waist[0]);
     const [lengthInput, setLengthInput] = useState(store.length[0]);
@@ -38,6 +38,7 @@ const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Ma
             setPc9Match(matchedPc9);
             setArchiveFormOpen(false)
             setArchiveFilterOn(true);
+            orderProducts();
             closeFilterModal();
         } 
     }

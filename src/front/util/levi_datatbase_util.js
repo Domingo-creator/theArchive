@@ -189,7 +189,7 @@ export const paginateRecommendationList = (
   return paginated;
 };
 
-
+////////////////////////////// UTIL REWRITE ////////////////////////////////
 // Score Distribution in % => sum to 100 //
 const GENDER_SCORE = 25;
 const SIZE_GROUP_SCORE = 25;
@@ -217,13 +217,11 @@ export const getArchiveScore = (pc9Match, testProduct, waistInput, lengthInput) 
     score += GENDER_SCORE;
     if(pc9Match.Size_Group_Taxonomy_US == testProduct.Size_Group_Taxonomy_US) {
       score += SIZE_GROUP_SCORE
-      if(isMeasurementMatch(pc9Match, testProduct, waistInput, lengthInput)) {
-        score += WAIST_LENGTH_SCORE
-        if(isFitMatch(pc9Match, testProduct)) {
-          score += FIT_SCORE
-          if(pc9Match.Stretch_Taxonomy_US == testProduct.Stretch_Taxonomy_US) {
-            score += STRETCH_SCORE
-          }
+      score += scoreMeasurementMatch(pc9Match,testProduct, waistInput, lengthInput)
+      if(isFitMatch(pc9Match, testProduct)) {
+        score += FIT_SCORE
+        if(pc9Match.Stretch_Taxonomy_US == testProduct.Stretch_Taxonomy_US) {
+          score += STRETCH_SCORE
         }
       }
     }
@@ -242,32 +240,13 @@ const isFitMatch = (pc9Match, testProduct) => {
 };
 
 
-const isMeasurementMatch = (pc9Match, testProduct, waistInput, lengthInput) => {
-  let isWaistMatch;
-  let isLengthMatch;
-  if(waistInput) {
-    isWaistMatch = pc9Match.Waist[waistInput] == testProduct.Waist[waistInput]
-  } else {
-    isWaistMatch = isAverageMatch(pc9Match.Waist, testProduct.Waist) 
-  }
-  if(lengthInput) {
-    isLengthMatch = pc9Match.Length[lengthInput] == testProduct.Length[lengthInput]
-  } else {
-    isLengthMatch = isAverageMatch(pc9Match.Length, testProduct.Length)
-  }
-  return isWaistMatch && isLengthMatch
+const scoreMeasurementMatch = (pc9Match, testProduct, waistInput, lengthInput) => {
+  let waistDifference = Math.abs(pc9Match.Waist[waistInput] - testProduct.Waist[waistInput])
+  let lengthDifference = Math.abs(pc9Match.Length[lengthInput] - testProduct.Length[lengthInput])
+  if((waistDifference + lengthDifference) < .05) return WAIST_LENGTH_SCORE;
+  if((waistDifference + lengthDifference) < .1) return Math.ceil(WAIST_LENGTH_SCORE * (3/4));
+  if((waistDifference + lengthDifference) < .2) return Math.ceil(WAIST_LENGTH_SCORE * (2/4));
+  if((waistDifference + lengthDifference) < .3) return Math.ceil(WAIST_LENGTH_SCORE * (1/4));
+  return 0;
 };
 
-// used for filter
-// Return true if the average size is less than .1
-const isAverageMatch = (pc9Sizes, testProductSizes) => {
-  let difference = 0;
-  let comparisons = 0;
-  for(let size in pc9Sizes) {
-    if(size in testProductSizes) {
-      difference += Math.abs(pc9Sizes[size] - testProductSizes[size])
-      comparisons++;
-    }
-  }
-  return difference/comparisons < .1;
-}

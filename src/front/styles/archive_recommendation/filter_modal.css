@@ -1,17 +1,30 @@
-.filter-modal {
+.filter-modal-open, .filter-modal-close {
     position: absolute;
     z-index: 1000;
     height: 100vh;
-    background-color: gray;
+    background-color: white;
+    width: 90vw;
+}
+
+.filter-modal-open {
+    transition: left 1s;
     left: 0;
-    width: 50vw;
-    padding-top: 50px;
+}
+
+.filter-modal-close {
+    transition: left 1s;
+    left: -90vw;
+
 }
 
 .modal-close-button {
     position: absolute;
     right: 5px;
-    top: 5px;
+    border: none;
+    align-self: flex-start;
+    background-color: inherit;
+    padding-top: 0;
+    
 }
 
 /* The switch - the box around the slider */

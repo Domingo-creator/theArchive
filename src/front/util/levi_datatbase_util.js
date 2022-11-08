@@ -198,16 +198,21 @@ const FIT_SCORE = 10;
 const STRETCH_SCORE = 5;
 //////////////////////////
 
-export const getArchiveMatches = (pc9Input = "362550058", waistInput, lengthInput) => {
-  let matches = [[],[],[],[],[],[]]
-  let pc9Match = leviDatabase.find( product => product.Identifier = pc9Input)
-  let matchArrayMap = {100: 0, 95: 1, 85: 2, 50: 3, 25: 4, 0: 5}
+export const getArchiveMatches = (pc9Match, waistInput, lengthInput) => {
+  let matches = []
+  // let pc9Match = MatchPc9(pc9)
+  let matchArrayMap = {100: 0, 95: 1, 92: 2, 85: 3, 83: 4, 78: 5,77: 6,74: 7,69: 8,68: 9,65: 10,60: 11,59: 12, 50: 13, 25: 14, 0: 15}
   for(let product of leviDatabase) {
     let score = getArchiveScore(pc9Match, product, waistInput, lengthInput);
+    product.match = score;
+    if(!(matchArrayMap[score] in matches)) matches[matchArrayMap[score]] = []
     matches[matchArrayMap[score]].push(product)
   }
-  return matches;
+  return matches.flat();
 }
+
+
+
 
 export const getArchiveScore = (pc9Match, testProduct, waistInput, lengthInput) => {
   let score = 0;

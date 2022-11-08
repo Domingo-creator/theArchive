@@ -16,6 +16,11 @@ const validate = Yup.object({
     .min(9, "must be 9 characters long"),
 });
 
+const formSubmit = (props, formik) => {
+  sessionStorage.setItem('archiveFilterOn', true)
+  props.actions(formik.values)
+}
+
 function Pc9Input(props) {
   return (
     <Formik
@@ -66,11 +71,11 @@ function Pc9Input(props) {
           </div>
           <div className="row submit">
             <button
-              onClick={() => props.actions(formik.values)}
+              onClick={() => formSubmit(props, formik)}
               className=" mx-auto mt-5 submitBtn"
               type="submit"
             >
-              <Link to="/archive" state={{ pc9: formik.values }}>
+              <Link to="/jeans" state={{ pc9: formik.values }}>
                 Submit
               </Link>
             </button>

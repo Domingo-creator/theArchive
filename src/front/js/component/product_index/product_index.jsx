@@ -3,8 +3,11 @@ import { leviDatabase } from '../../../util/levi_database'
 import FilterSort from './filter_sort';
 import ProductIndexItem from './product_index_item';
 import { Context } from "../../store/appContext";
-import { MatchPc9 } from '../../../util/levi_datatbase_util';
+import { getArchiveMatches, MatchPc9 } from '../../../util/levi_datatbase_util';
 import PageNavigation from './page_navigation';
+import ArchiveHeader from '../archive_recommendation/archive_header';
+import Pc9Result from '../archive_recommendation/pc9_result';
+import RetiredFavorite from '../archive_recommendation/retired_favorite';
 
 const ProductIndex = ({}) => {
     const { store, actions } = useContext(Context);
@@ -17,30 +20,45 @@ const ProductIndex = ({}) => {
         );
     const [curPage, setCurPage] = useState(0);
     const [numPerPage, setNumPerPage] = useState(6)
+    const [products, setProducts] = useState(pc9 ? getArchiveMatches(pc9, store.waist[0], store.length[0]) : leviDatabase)
    
-
-    console.log('archiveFilterOn', archiveFilterOn)
+    useEffect( () => {
+        if(archiveFilterOn) {
+            setProducts(getArchiveMatches(pc9Match, store.waist[0], store.length[0]))
+        }
+    },[archiveFilterOn])
+    
     return(
+        <div>
+            {archiveFilterOn ? 
+                <div>
+                    <ArchiveHeader />
+                    <Pc9Result matchingJean={pc9Match} />
+                    <RetiredFavorite />
+                </div>
+            :
+                 <></>
+            }
         <div className='product-list-container'>
             <FilterSort 
                 archiveFilterOn={archiveFilterOn} 
                 setArchiveFilterOn={setArchiveFilterOn} 
-                itemCount={leviDatabase.length}
+                itemCount={products.length}
                 pc9Match={pc9Match}
                 setPc9Match={setPc9Match}
             />
             <div className='product-list'>
-                {leviDatabase.slice(curPage * numPerPage, (curPage * numPerPage) + numPerPage).map( product => (
+                {products.slice(curPage * numPerPage, (curPage * numPerPage) + numPerPage).map( product => (
                     <ProductIndexItem product={product} pc9Match={pc9Match} archiveFilterOn={archiveFilterOn}/>
                 ))}
             </div>
             <PageNavigation
-                numPages={leviDatabase.length % numPerPage}
+                numPages={products.length % numPerPage}
                 curPage={curPage}
                 setCurPage={setCurPage}
             />
+        </div> 
         </div>
-       
     )
 }
 

@@ -23,9 +23,11 @@ const ProductIndex = ({}) => {
     const [numPerPage, setNumPerPage] = useState(6)
     const [products, setProducts] = useState(pc9 ? getArchiveMatches(pc9, store.waist[0], store.length[0]) : leviDatabase)
    
+    const orderProducts = () => setProducts(getArchiveMatches(pc9Match, store.waist[0], store.length[0]))
+
     useEffect( () => {
         if(archiveFilterOn) {
-            setProducts(getArchiveMatches(pc9Match, store.waist[0], store.length[0]))
+            orderProducts();
         }
     },[archiveFilterOn])
     
@@ -47,6 +49,7 @@ const ProductIndex = ({}) => {
                 itemCount={products.length}
                 pc9Match={pc9Match}
                 setPc9Match={setPc9Match}
+                orderProducts={orderProducts}
             />
             <div className='product-list'>
                 {products.slice(curPage * numPerPage, (curPage * numPerPage) + numPerPage).map( product => (

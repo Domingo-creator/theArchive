@@ -1,0 +1,6 @@
+.archive-modal-form {
+    display:flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 20px;
+}

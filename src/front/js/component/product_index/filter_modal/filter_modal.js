@@ -11,8 +11,9 @@ const FilterModal = ({ filterModalOpen, closeFilterModal, archiveFilterOn, setAr
   
   // if(!filterModalOpen) return <></>
   return (
-    <div className={filterModalOpen ? "filter-modal-open" : "filter-modal-close"}>
-      <div className={filterModalOpen ? '' : ''}>
+    <div>
+      <div className={filterModalOpen ? 'overlay' : ''} />
+      <div className={filterModalOpen ? "filter-modal-open" : "filter-modal-close"}>
         <div className="filter-sort">
           <div >
             <FontAwesomeIcon icon={faArrowRightArrowLeft} />

@@ -61,7 +61,7 @@ const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, closeFilterModal, 
                 <div>
                     <div className='archive-modal-form-errors'>
                         {archiveErrors.map( error => (
-                            <div>ERROR: {error}</div>
+                            <div>ERROR: {error} </div>
                         ))}
                     </div>
                     <ArchiveModalForm 

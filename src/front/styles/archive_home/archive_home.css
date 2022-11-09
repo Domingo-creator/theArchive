@@ -1,0 +1,51 @@
+.archive-home-container {
+    text-align: center;
+}
+
+.archive-home-container > div {
+    margin-bottom: 20px;
+}
+
+.archive-header {
+    font-size: 14px;
+}
+
+.archive-home-title {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.archive-levis-customer {
+    display: flex;
+}
+
+.archive-levis-customer-left {
+    border-right: solid black;
+}
+
+
+.archive-levis-customer > div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.archive-home-large {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.archive-home-medium {
+    font-size: 16px
+}
+
+.archive-home-small {
+    font-size: 12px
+}
+
+.archive-home-container button {
+    text-decoration: none;
+    height: 48px;
+    width: 70%;   
+    /* outline: black solid; */
+}

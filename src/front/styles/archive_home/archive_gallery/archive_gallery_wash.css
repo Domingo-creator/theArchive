@@ -1,4 +1,15 @@
-.archive-gallery-choice {
-    width: fit-content;
-    height: auto;
+.archive-gallery-wash {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    margin: 20px;
+}
+
+
+.archive-gallery-wash img {
+ 
+}
+
+.archive-gallery-wash img:hover, .archive-gallery-wash .highlight {
+ outline: black 10px solid;
 }

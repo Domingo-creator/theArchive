@@ -4,9 +4,10 @@ import LooseImg from '../../../../img/Loose_Style.png'
 import SkinnyImg from '../../../../img/Skinny_Style.png'
 import SlimImg from '../../../../img/Slim_Style.png'
 import StraightImg from '../../../../img/Straight_Style.avif'
-// import TaperedImg from '../../../../img/Tapered_Style.avif'
+// import TaperedImg from '../../../../img/Tapered_Style.avif
+import '../../../../styles/archive_home/archive_gallery/archive_gallery_style.css'
 
-const ArchiveGalleryStyle = ({updateStyle, advanceGallery}) => {
+const ArchiveGalleryStyle = ({style, updateStyle, advanceGallery}) => {
     const styleChoices =[
         {style: 'Straight Jeans',img: StraightImg, key: 'Straight'},
         {style: 'Skinny Jeans',img: SkinnyImg ,key: 'Skinny'},
@@ -16,19 +17,19 @@ const ArchiveGalleryStyle = ({updateStyle, advanceGallery}) => {
         // {style: 'Tapered Jeans',img: TaperedImg},
     ]
 
-    const selectStyle = (selectedStyle) => {
-        updateStyle(selectedStyle)
-        advanceGallery();
-    }
+
 
     return(
-        <div className='archive-gallery-style'>
-            {styleChoices.map( styleChoice => (
-                <div onClick={() => selectStyle(styleChoice.key)} >
-                    <img src={styleChoice.img}/>
-                    <div>{styleChoice.style}</div>
-                </div>
-            ))}
+        <div className='archive-gallery-style-container' >
+            <div className='archive-gallery-style'>
+                {styleChoices.map( styleChoice => ( 
+                    <div onClick={() => updateStyle(styleChoice.key)} >
+                        <img src={styleChoice.img} className={style === styleChoice.key ? 'highlight' : ''}/>
+                        <div>{styleChoice.style}</div>
+                    </div>
+                ))}
+            </div>
+            <button className='gallery-next-button' onClick={() => advanceGallery(style)}>Next</button>
         </div>
     )
 }

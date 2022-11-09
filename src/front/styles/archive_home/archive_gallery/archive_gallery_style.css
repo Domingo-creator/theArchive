@@ -1,0 +1,23 @@
+.archive-gallery-style {
+    display: flex;
+    overflow: scroll;
+}
+
+.archive-gallery-style > div {
+    margin: 20px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.archive-gallery-style img {
+    height: 346px;
+    width: 232px;
+    object-fit: cover;
+    opacity: 0.5;
+    filter: alpha(opacity=80); 
+}
+
+.archive-gallery-style img:hover, .archive-gallery-style .highlight {
+    opacity: 1;
+    filter: alpha(opacity=100)
+}

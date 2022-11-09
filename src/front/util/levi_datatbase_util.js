@@ -127,9 +127,7 @@ const checkMeasurementMatch = (
 // );
 ///////
 
-export const MatchPc9 = (pc9) => {
-  return leviDatabase.find((item) => item.Identifier == pc9);
-};
+
 
 export const getRandomJeanImage = () => {
   let imagePool = [
@@ -212,12 +210,9 @@ export const getArchiveMatches = (pc9Match, waistInput, lengthInput) => {
 }
 
 
-
-
 export const getArchiveScore = (pc9Match, testProduct, waistInput, lengthInput) => {
+  // console.log(pc9Match, testProduct)
   let score = 0;
-  console.log(pc9Match, testProduct)
-  console.log(pc9Match.Size_Group_Taxonomy_US == testProduct.Size_Group_Taxonomy_US)
   if(pc9Match.Gender_Taxonomy_US == testProduct.Gender_Taxonomy_US) {
     score += GENDER_SCORE;
     if(pc9Match.Size_Group_Taxonomy_US == testProduct.Size_Group_Taxonomy_US) {
@@ -225,7 +220,7 @@ export const getArchiveScore = (pc9Match, testProduct, waistInput, lengthInput) 
       score += scoreMeasurementMatch(pc9Match,testProduct, waistInput, lengthInput)
       if(isFitMatch(pc9Match, testProduct)) {
         score += FIT_SCORE
-        if(pc9Match.Stretch_Taxonomy_US == testProduct.Stretch_Taxonomy_US) {
+        if(!('Stretch_Taxonomy_US' in pc9Match) || pc9Match.Stretch_Taxonomy_US == testProduct.Stretch_Taxonomy_US)  {
           score += STRETCH_SCORE
         }
       }
@@ -234,6 +229,9 @@ export const getArchiveScore = (pc9Match, testProduct, waistInput, lengthInput) 
   return score
 }
 
+export const MatchPc9 = (pc9) => {
+  return leviDatabase.find((item) => item.Identifier == pc9);
+};
 
 const isFitMatch = (pc9Match, testProduct) => {
   let pc9FitTaxonomy = new Set();
@@ -246,6 +244,7 @@ const isFitMatch = (pc9Match, testProduct) => {
 
 
 const scoreMeasurementMatch = (pc9Match, testProduct, waistInput, lengthInput) => {
+  if(!('Waist' in pc9Match)) return WAIST_LENGTH_SCORE;
   let waistDifference = Math.abs(pc9Match.Waist[waistInput] - testProduct.Waist[waistInput])
   let lengthDifference = Math.abs(pc9Match.Length[lengthInput] - testProduct.Length[lengthInput])
   if((waistDifference + lengthDifference) < .05) return WAIST_LENGTH_SCORE;
@@ -255,3 +254,35 @@ const scoreMeasurementMatch = (pc9Match, testProduct, waistInput, lengthInput) =
   return 0;
 };
 
+
+export const getArchiveMeasurementMatches = (waistInput, lengthInput, hipInput) => {
+  let matches = []
+  // let pc9Match = MatchPc9(pc9)
+  let matchArrayMap = {100: 0, 90: 1, 80: 2, 70: 3, 60: 4, 50: 5, 40: 6, 30: 7,20: 8, 10: 9, 0: 10}
+  for(let product of leviDatabase) {
+    let score = scoreMeasurementMatchWitHip(waistInput, lengthInput, hipInput)
+    product.match = score;
+    if(!(matchArrayMap[score] in matches)) matches[matchArrayMap[score]] = []
+    matches[matchArrayMap[score]].push(product)
+  }
+  return matches.flat();
+}
+
+const scoreMeasurementMatchWitHip = (waistInput, lengthInput, hipInput) => {
+  for(let product of leviDatabase) {
+    let waistDifference = Math.abs(waistInput - product.Waist[waistInput])
+    let lengthDifference = Math.abs(lengthInput - product.Length[lengthInput])
+    let hipDifference = Math.abs(hipInput - product.Hip[hipInput])
+    if((waistDifference + lengthDifference + hipDifference) < .05) return 100;
+    if((waistDifference + lengthDifference + hipDifference) < .1)  return 90;
+    if((waistDifference + lengthDifference + hipDifference) < .15)  return 80;
+    if((waistDifference + lengthDifference + hipDifference) < .2)  return 70;
+    if((waistDifference + lengthDifference + hipDifference) < .25)  return 60;
+    if((waistDifference + lengthDifference + hipDifference) < .3)  return 50;
+    if((waistDifference + lengthDifference + hipDifference) < .35)  return 40;
+    if((waistDifference + lengthDifference + hipDifference) < .4)  return 30;
+    if((waistDifference + lengthDifference + hipDifference) < .45)  return 20;
+    if((waistDifference + lengthDifference + hipDifference) < .5)  return 10;
+    return 0;
+  }
+}

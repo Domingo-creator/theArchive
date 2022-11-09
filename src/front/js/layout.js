@@ -16,6 +16,9 @@ import Pc9Input from "./pages/pc9Input";
 import LeviBackend from "./component/leviBackend";
 import WaistLengthInput from "./pages/waistLengthInput";
 import ProductIndex from "./component/product_index/product_index";
+import ArchiveHome from "./component/archive_home/archive_home";
+import ArchiveGallery from "./component/archive_home/archive_gallery/archive_gallery";
+import ArchiveMeasurements from "./component/archive_home/archive_measurements";
 
 //create your first component
 const Layout = () => {
@@ -30,17 +33,20 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
+            <Route element={<ArchiveHome />} path="/" />
             <Route element={<Home />} path="/browsingPage" />
-            <Route element={<ArchiveRecommendation />} path="/archive" />
+            <Route element={<ArchiveHome />} path="/archive" />
+            <Route element={<ArchiveGallery />} path="/archive/gallery" />
+            <Route element={<ArchiveMeasurements />} path="archive/measurements" />
             <Route element={<ProductIndex />} path="/jeans" />
             <Route
               element={<WaistLengthInput
                 actionWaist={actions.addWaist}
                 actionLength={actions.addLength}
               />}
-              path="/"
+              path="/archive/pc9/waist-length"
             />
-            <Route element={<Pc9Input actions={actions.addPc9} />} path="/pc9" />
+            <Route element={<Pc9Input actionAddPc9={actions.addPc9} actionAddPc9Match={actions.addPc9Match} />} path="/archive/pc9/pc9" />
             <Route element={<LeviBackend />} path="/leviBackend" />
 
             <Route element={<h1>Not found!</h1>} />

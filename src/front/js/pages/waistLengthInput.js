@@ -86,7 +86,7 @@ function WaistLengthInput(props) {
               className=" mx-auto mt-5 submitBtn"
               type="submit"
             >
-              <Link to="/pc9">Submit</Link>
+              <Link to="/archive/pc9/pc9">Submit</Link>
             </button>
           </div>
         </div>

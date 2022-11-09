@@ -1,0 +1,54 @@
+.measurements-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.measurements-headline {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.measurements-main {
+    display: flex
+}
+
+.measurements-section {
+    justify-content: space-between;
+}
+
+.measurements-section, .measurement-details, .measurement-inputs {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;;
+    margin-left: 10px;
+}
+
+.measurement-image img {
+    width: 50vw;
+    height:374px;
+    object-fit: cover;
+}
+
+.measurement-inputs > label {
+    display: flex;
+    height: 31px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+/* label > strong {
+    position: relative;
+    left: 10px;
+} */
+.measurement-inputs input {
+    position: absolute;
+    left: 40px;
+    height: 31px;
+}
+
+.measurements-container button {
+    margin-top: 20px;
+}

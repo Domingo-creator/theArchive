@@ -8,6 +8,7 @@ import TextField from "../component/textField";
 import * as Yup from "yup";
 import pc9Img from "../../img/pc9_2.png";
 import "../../styles/pc9Input.css";
+import { MatchPc9 } from "../../util/levi_datatbase_util";
 
 const validate = Yup.object({
   pc9Input: Yup.string()
@@ -18,7 +19,9 @@ const validate = Yup.object({
 
 const formSubmit = (props, formik) => {
   sessionStorage.setItem('archiveFilterOn', true)
-  props.actions(formik.values)
+  console.log(MatchPc9(formik.values.pc9Input))
+  props.actionAddPc9(formik.values)
+  props.actionAddPc9Match(MatchPc9(formik.values.pc9Input))
 }
 
 function Pc9Input(props) {

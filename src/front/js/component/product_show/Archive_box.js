@@ -1,23 +1,14 @@
 import React, { useContext } from "react";
 import "../../../styles/archiveBox.css";
 import MatchBar from "./matchBar";
-import { Link, useLocation } from "react-router-dom";
-import ArchiveMatchScore from "../product_index/archive_match_score";
 import ArchiveTxt from "./archiveTxt";
 import { CircleProgress } from "react-gradient-progress";
 import { getArchiveScore, MatchPc9 } from "../../../util/levi_datatbase_util";
 import { Context } from "../../store/appContext";
 
-const ArchiveBox = ({jean, pc9Match}) => {
-  // const location = useLocation();
-  // const { jean } = location.state;
-  // console.log(jean.match, "jean match");
-  // const percentage = { jean.match };
+const ArchiveBox = ({jean}) => {
   const { store, actions } = useContext(Context);
-  // console.log('here pc9:', store.pc9[0])
-  // console.log("here", MatchPc9(store.pc9[0]))
-  // const pc9 = store.pc9[0]?.pc9Input;
-  const archiveScore = jean.match || getArchiveScore(pc9Match, jean, store.waist[0], store.length[0])
+  const archiveScore = jean.match || getArchiveScore(store.pc9Match, jean, store.waist[0], store.length[0])
 
   return (
     <div className="border border-muted rounded">

@@ -5,7 +5,7 @@ import ArchiveModalForm from './archive_form';
 import '../../../../../styles/product_index/archive_filter.css'
 
 
-const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Match, closeFilterModal, orderProducts}) => {
+const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, closeFilterModal, orderProducts}) => {
     const { store, actions } = useContext(Context);
     const [waistInput, setWaistInput] = useState(store.waist[0]);
     const [lengthInput, setLengthInput] = useState(store.length[0]);
@@ -35,7 +35,7 @@ const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Ma
             actions.addPc9(pc9Input);
             actions.addWaist(waistInput);
             actions.addLength(lengthInput);
-            setPc9Match(matchedPc9);
+            actions.addPc9Match(matchedPc9);
             setArchiveFormOpen(false)
             setArchiveFilterOn(true);
             orderProducts();
@@ -52,11 +52,9 @@ const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Ma
         //validate length
         if(lengthInput == undefined) errors.push('Please enter length')
         setArchiveErrors(errors);
-        console.log(errors)
         return errors.length ? false : true;
     }
 
-    console.log(archiveErrors.map( error => error))
     return(
         <div>
             {archiveFormOpen ? 
@@ -74,7 +72,6 @@ const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Ma
                         pc9Input={pc9Input}
                         updatePc9Input={updatePc9Input}
                         closeArchiveForm={closeArchiveForm}
-                        pc9Match={pc9Match}
                         submitForm={submitForm}
                     />
                 </div>
@@ -82,10 +79,10 @@ const ArchiveFilter = ({ archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Ma
                 <></>
             }
     
-            {!archiveFormOpen && pc9Match ? 
+            {!archiveFormOpen && store.pc9Match ? 
               <div>
                 <div>
-                  You have selected {pc9Match.Product_Name_Taxonomy_US} in size {waistInput} x {lengthInput} as your best fitting jeans.
+                  You have selected {store.pc9Match.Product_Name_Taxonomy_US} in size {waistInput} x {lengthInput} as your best fitting jeans.
                   <span className='link' onClick={resetArchiveForm}>Click here</span> to change your best fitting jeans.
                 </div>
                 <div className='filter-switch'>

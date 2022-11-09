@@ -2,6 +2,7 @@
 // import { MatchPc9 } from '../../../../../util/levi_datatbase_util';
 // import { Context } from '../../../../store/appContext';
 import '../../../../../styles/product_index/archive_form.css'
+import { Context } from '../../../../store/appContext'
 
  const ArchiveModalForm = ({ waistInput,
   updateWaistInput,
@@ -10,10 +11,10 @@ import '../../../../../styles/product_index/archive_form.css'
   pc9Input,
   updatePc9Input,
   closeArchiveForm,
-  pc9Match,
   submitForm
  }) => {
 
+    const {store, actions} = useContext(Context)
 
     return(
         <form className='archive-modal-form' onSubmit={(e) => submitForm(e)}>
@@ -36,7 +37,7 @@ import '../../../../../styles/product_index/archive_form.css'
             onChange={updatePc9Input}
           />
           <button>See Archive Results</button>
-          <button className={pc9Match ? '' : 'hide'}type="button" onClick={closeArchiveForm}>Cancel</button>
+          <button className={store.pc9Match ? '' : 'hide'}type="button" onClick={closeArchiveForm}>Cancel</button>
         </form>
     )
  }

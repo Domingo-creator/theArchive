@@ -4,6 +4,7 @@ import ArchiveGalleryFit from './archive_gallery_fit';
 import ArchiveGalleryMeasurements from './archive_gallery_measurements';
 import ArchiveGalleryStyle from './archive_gallery_style';
 import ArchiveGalleryWash from './archive_gallery_wash';
+import '../../../../styles/archive_home/archive_gallery/archive_gallery.css'
 
 const ArchiveGallery = ({}) => {
     const headlines = [ "WHAT IS YOUR JEAN STYLE", 
@@ -24,8 +25,10 @@ const ArchiveGallery = ({}) => {
     const updateWaistInput = (e) => setWaistInput(e.target.value)
     const updateLengthInput = (e) => setLengthInput(e.target.value)
     
-    const advanceGallery = () => setCurCategoryIndex(curCategoryIndex + 1)
-
+    const advanceGallery = (categorySelection) => {
+        console.log("categorySelection:",categorySelection, "fit:",fit)
+        if(categorySelection) setCurCategoryIndex(curCategoryIndex + 1)
+    }
     const submitSelections = () => {
         let selectionObject = { 
                                 Gender_Taxonomy_US: "Women", // Default
@@ -33,7 +36,6 @@ const ArchiveGallery = ({}) => {
                                 Color_Group_Taxonomy_US: wash,
                                 Size_Group_Taxonomy_US: "Womens",  // Default
                               }
-        console.log(selectionObject)
         actions.addWaist(waistInput)
         actions.addLength(lengthInput)
         actions.addPc9Match(selectionObject);
@@ -43,11 +45,11 @@ const ArchiveGallery = ({}) => {
     const getCurrentCategoryList = () => {
         switch (curCategoryIndex) {
             case 0:
-                return <ArchiveGalleryStyle updateStyle={updateStyle} advanceGallery={advanceGallery}/>
+                return <ArchiveGalleryStyle style={style} updateStyle={updateStyle} advanceGallery={advanceGallery}/>
             case 1:
-                return <ArchiveGalleryFit updateFit={updateFit} advanceGallery={advanceGallery}/>
+                return <ArchiveGalleryFit fit={fit} updateFit={updateFit} advanceGallery={advanceGallery}/>
             case 2:
-                return <ArchiveGalleryWash updateWash={updateWash} advanceGallery={advanceGallery}/>
+                return <ArchiveGalleryWash wash={wash} updateWash={updateWash} advanceGallery={advanceGallery}/>
             case 3:
                 return <ArchiveGalleryMeasurements 
                             waistInput={waistInput} 
@@ -63,7 +65,7 @@ const ArchiveGallery = ({}) => {
 
     return (
         <div>
-            <div className="gallery-headline">{headlines[curCategoryIndex]}</div>
+            <div className="gallery-headline">{headlines[curCategoryIndex]}?</div>
             {getCurrentCategoryList()}
         </div>
     )

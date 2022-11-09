@@ -12,5 +12,10 @@ ul {
 ul > li {
     display: inline;
     margin: 1vw;
-    
+    cursor: pointer;    
+}
+
+.current-page {
+    text-decoration: underline;
+    font-weight: bold;
 }

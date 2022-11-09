@@ -18,6 +18,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         setStore({ length: [data] });
       },
+      addHip: (data) => {
+        const store = getStore();
+        setStore({ hip: data })
+      },
+      addPc9Match: (data) => {
+        const store = getStore();
+        setStore({ pc9Match: data})
+      }
     },
   };
 };

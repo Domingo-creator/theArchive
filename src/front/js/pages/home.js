@@ -17,7 +17,8 @@ import { getArchiveScore } from "../../util/levi_datatbase_util";
 
 export const Home = ({}) => {
   const location = useLocation();
-  const { jean, pc9Match } = location.state;
+  const { jean } = location.state;
+  const {store, action} = useContext(Context)
 
   return (
     <div className="container px-0 ">
@@ -47,8 +48,8 @@ export const Home = ({}) => {
       </div>
 
       <br />
-      {pc9Match ?
-          <ArchiveBox jean={jean} pc9Match={pc9Match}/>
+      {store.pc9Match ?
+          <ArchiveBox jean={jean}/>
         :
           <></>
       }

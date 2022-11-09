@@ -7,7 +7,7 @@ import { Context } from "../../../store/appContext";
 import ArchiveFilter from "./archive_filter/archive_filter";
 import ArchiveModalForm from "./archive_filter/archive_form";
 
-const FilterModal = ({ filterModalOpen, closeFilterModal, archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Match, orderProducts }) => {
+const FilterModal = ({ filterModalOpen, closeFilterModal, archiveFilterOn, setArchiveFilterOn, orderProducts }) => {
   
   // if(!filterModalOpen) return <></>
   return (
@@ -24,8 +24,8 @@ const FilterModal = ({ filterModalOpen, closeFilterModal, archiveFilterOn, setAr
         <ArchiveFilter 
           archiveFilterOn={archiveFilterOn}
           setArchiveFilterOn={setArchiveFilterOn}
-          pc9Match={pc9Match}
-          setPc9Match={setPc9Match}
+          // pc9Match={pc9Match}
+          // setPc9Match={setPc9Match}
           closeFilterModal={closeFilterModal}
           orderProducts={orderProducts}
         />

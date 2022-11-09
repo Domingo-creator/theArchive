@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "../../../styles/archive_recommendation/filter_sort.css";
 import FilterModal from "./filter_modal/filter_modal";
 
-const FilterSort = ({ itemCount, archiveFilterOn, setArchiveFilterOn, pc9Match, setPc9Match, orderProducts }) => {
+const FilterSort = ({ itemCount, archiveFilterOn, setArchiveFilterOn, orderProducts }) => {
   const [filterModalOpen, setFilterModalOpen] = useState(false);
 
   const openFilterModal = () => setFilterModalOpen(true);
@@ -24,8 +24,8 @@ const FilterSort = ({ itemCount, archiveFilterOn, setArchiveFilterOn, pc9Match, 
         closeFilterModal={closeFilterModal}
         archiveFilterOn={archiveFilterOn}
         setArchiveFilterOn={setArchiveFilterOn}
-        pc9Match={pc9Match}
-        setPc9Match={setPc9Match}
+        // pc9Match={pc9Match}
+        // setPc9Match={setPc9Match}
         orderProducts={orderProducts}
       />
     </div>

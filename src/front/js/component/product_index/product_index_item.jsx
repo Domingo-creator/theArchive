@@ -5,20 +5,21 @@ import { getArchiveScore, getRandomJeanImage } from "../../../util/levi_datatbas
 import ArchiveMatchScore from "./archive_match_score";
 import { Context } from "../../store/appContext";
 
-const ProductIndexItem = ({product, pc9Match, archiveFilterOn}) => {
+const ProductIndexItem = ({product, archiveFilterOn}) => {
     if (!("ImgFront" in product)) product.ImgFront = getRandomJeanImage();
     if (!("Price" in product)) product.Price = 98.0;
     const { store, actions } = useContext(Context);
     const waistInput = store.waist[0];
     const lengthInput = store.length[0];
     
+    // console.log(product)
     return (
       <div className="product-list-item-container">
-        <Link to="/browsingPage" state={{ jean: product, pc9Match: pc9Match }}>
+        <Link to="/browsingPage" state={{ jean: product}}>
           <div className="product-list-item-image">
             {archiveFilterOn ?
                 <ArchiveMatchScore 
-                    archiveRating={product.match || getArchiveScore(pc9Match, product, waistInput, lengthInput)} 
+                    archiveRating={product.match || getArchiveScore(store.pc9Match, product, waistInput, lengthInput)} 
                 />
             :
                 <div className='hide'></div>

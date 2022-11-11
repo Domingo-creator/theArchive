@@ -31,10 +31,15 @@ export const Navbar = () => {
             <li className="nav-item">SECONDHAND</li>
           </ul>
         </div>
-
-        <div>
-          <img src="https://i.imgur.com/rxlJC7G.png" height="30px" />
-        </div>
+        <Link to="/">
+          <div>
+            <img
+              src="https://i.imgur.com/rxlJC7G.png"
+              height="30px"
+              className="Levi's img"
+            />
+          </div>
+        </Link>
 
         <div>
           <img src="https://i.imgur.com/yM8VTqT.png" height="20px" />

@@ -14,12 +14,28 @@ function MatchBar() {
   let pc9Match = leviDatabase.filter(
     (product) => product.Identifier == pc9Input
   );
-  let waistHomeAvg = pc9Match[0]?.Waist[waistInput];
-  let waistStoreAvg = jean?.Waist[waistInput];
+  let waistHomeAvg = Math.trunc(pc9Match[0]?.Waist[waistInput] * 100);
+  let waistStoreAvg = Math.trunc(jean?.Waist[waistInput] * 100);
   console.log("waistStoreAvg", waistStoreAvg);
   console.log("waistHomeAvg", waistHomeAvg);
+  const waistAvgCalc = (waistHomeAvg - waistStoreAvg) / 100;
+  console.log(waistAvgCalc, "calc");
   const [matchBarMargin, setmatchBarMargin] = useState(
-    waistHomeAvg == waistStoreAvg ? 122 : waistHomeAvg > waistStoreAvg ? 0 : 245
+    waistHomeAvg == waistStoreAvg
+      ? 122
+      : waistAvgCalc == -0.3
+      ? 245
+      : waistAvgCalc == -0.2
+      ? 199
+      : waistAvgCalc == -0.1
+      ? 161
+      : waistAvgCalc == 0.3
+      ? 0
+      : waistAvgCalc == 0.2
+      ? 43
+      : waistAvgCalc == 0.1
+      ? 88
+      : 122
   );
   console.log(matchBarMargin, "useState");
 

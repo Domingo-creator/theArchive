@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../../styles/archive_home/archive_home.css'
+import ArchiveHomeImage from '../../../img/The_Archive_Landing_Page_Video.png'
 
 const ArchiveHome = ({}) => {
     return(
@@ -10,6 +11,9 @@ const ArchiveHome = ({}) => {
                 <div>A destination where evryone of all sizes and body types 
                     can find their best fitting Levi's jeans in just a few simple steps.
                 </div>
+            </div>
+            <div className='archive-home-main-image'>
+                <img  src={ArchiveHomeImage} />
             </div>
             <div clasName='archive-home-details'>
                 <div className='archive-home-large'>LEVI'S JEANS: TAG OR NO TAG?</div>
@@ -22,6 +26,11 @@ const ArchiveHome = ({}) => {
             <div className="archive-levis-customer">
                 <div className='archive-levis-customer-left'>
                     <div>
+                        <div className='archive-home-pc9-tag'>
+                            <div>- - - - - - - -</div>
+                            <div>PC-53797-0008</div>
+                            <div>W 26 L 32</div>
+                        </div>
                         <div className='archive-home-large'>PC9 Code</div>
                         <div className='archive-home-small'>PC9 Code is found on your jeans tag and holds all key details needed</div>
                     </div>
@@ -32,7 +41,7 @@ const ArchiveHome = ({}) => {
                         <div className='archive-home-large'>No PC9 Code</div>
                         <div className='archive-home-small'>Find your specific jeans amongst our virtual gallery</div>
                     </div>
-                    <Link to="/archive/gallery"><button>I dont have it</button></Link>
+                    <Link to="/archive/gallery"><button>I don't have it</button></Link>
                 </div>
             </div>
             <div className="archive-new-customer">

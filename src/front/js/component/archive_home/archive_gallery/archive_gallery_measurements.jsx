@@ -39,7 +39,6 @@ const ArchiveGalleryMeasurements = ({waistInput, lengthInput, updateWaistInput, 
                     </button>
                 </Link>
             </div>
-            >
         </div>
     )
 }

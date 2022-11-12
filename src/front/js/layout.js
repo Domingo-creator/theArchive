@@ -8,7 +8,7 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
+import Footer from "./component/footer";
 
 import ArchiveRecommendation from "./component/archive_recommendation/archive_recommendation";
 

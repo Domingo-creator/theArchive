@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Form } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from "../component/textField";
 import * as Yup from "yup";
 import wLImg from "../../img/PC9-W26_L28.png";
@@ -19,6 +19,7 @@ const validate = Yup.object({
 });
 
 function WaistLengthInput(props) {
+  const navigate = useNavigate();
   return (
     <Formik
       initialValues={{
@@ -58,23 +59,37 @@ function WaistLengthInput(props) {
           <div className="row WaistInput">
             <div>
               <TextField
-                className="waistLengthInputField ms-2"
+                className="waistLengthInputField ms-2 border border-secondary"
                 label="W"
                 id="waistInput"
                 name="waistInput"
                 type="text"
               />
+            </div>{" "}
+            <div className="justify-content-center d-flex text-danger mb-3">
+              {formik.errors.waistInput}
             </div>
           </div>
           <div className="row LengthInput">
             <div>
               <TextField
-                className="waistLengthInputField ms-2"
+                className="waistLengthInputField border border-secondary ms-2"
                 label="L"
                 id="lengthInput"
                 name="lengthInput"
                 type="text"
+                onKeyDown={(e) => {
+                  e.persist();
+                  if (e.keyCode == 13) {
+                    props.actionWaist(formik.values.waistInput);
+                    props.actionLength(formik.values.lengthInput);
+                    navigate("/pc9");
+                  }
+                }}
               />
+            </div>
+            <div className="justify-content-center d-flex text-danger ">
+              {formik.errors.lengthInput}
             </div>
           </div>
           <div className="row submit">
@@ -86,7 +101,7 @@ function WaistLengthInput(props) {
               className=" mx-auto mt-5 submitBtn"
               type="submit"
             >
-              <Link to="/archive/pc9/pc9">Submit</Link>
+              <Link to="/pc9">Submit</Link>
             </button>
           </div>
         </div>

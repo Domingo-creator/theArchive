@@ -1,31 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { Formik, Form } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from "../component/textField";
 import * as Yup from "yup";
 import pc9Img from "../../img/pc9_2.png";
 import "../../styles/pc9Input.css";
 import { MatchPc9 } from "../../util/levi_datatbase_util";
+import { leviDatabase } from "../../util/levi_database";
 
-const validate = Yup.object({
-  pc9Input: Yup.string()
-    .required("This field is required")
-    .max(9, "must be 9 characters long")
-    .min(9, "must be 9 characters long"),
-});
-
-const formSubmit = (props, formik) => {
-  sessionStorage.setItem('archiveFilterOn', true)
-  console.log(MatchPc9(formik.values.pc9Input))
-  props.actionAddPc9(formik.values)
-  props.actionAddPc9Match(MatchPc9(formik.values.pc9Input))
-}
 
 function Pc9Input(props) {
+  const navigate = useNavigate();
+  const [pc9ErrorModalOpen, setPc9ErrorModalOpen] = useState(false);
+
+  const formSubmit = (props, formik) => {
+    console.log(formik.values)
+    if(validateInput()){
+      let pc9Match = MatchPc9(formik.values.pc9Input)
+      if(pc9Match) {
+        setPc9ErrorModalOpen(false)
+        sessionStorage.setItem('archiveFilterOn', true)
+        // console.log(MatchPc9(formik.values.pc9Input))
+        props.actionAddPc9(formik.values)
+        props.actionAddPc9Match(pc9Match)
+        navigate('../jeans')
+      } else {
+        setPc9ErrorModalOpen(true)
+      }
+    }
+  }
+
+  const validateInput = () => {
+
+  }
+
+  const validate = Yup.object({
+    pc9Input: Yup.string()
+      // .required("This field is required")
+      // .max(9, "must be 9 characters long")
+      // .min(9, "must be 9 characters long"),
+  });
+
   return (
+    <div>
+     
+    
     <Formik
       initialValues={{
         pc9Input: "",
@@ -61,6 +83,14 @@ function Pc9Input(props) {
           <div className="row pc9Img">
             <img className="mb-5" src={pc9Img} alt="pc9 tag" />
           </div>
+          <div className={pc9ErrorModalOpen ? 'pc9-error-modal' : 'pc9-error-modal hide'} >
+            <div>This project is only a proof of concept and his limited data.  Please use on of the following Pc9 codes to experience this demo:</div>
+            <div className='pc9-list'>
+              {leviDatabase.map( product => (
+                <div>{product.Identifier}</div>
+              ))}
+            </div>
+          </div>
           <div className="row pc9Input">
             <div>
               <TextField
@@ -77,15 +107,13 @@ function Pc9Input(props) {
               onClick={() => formSubmit(props, formik)}
               className=" mx-auto mt-5 submitBtn"
               type="submit"
-            >
-              <Link to="/jeans" state={{ pc9: formik.values }}>
-                Submit
-              </Link>
+            >Submit
             </button>
           </div>
         </div>
       )}
     </Formik>
+    </div>
   );
 }
 Pc9Input.propTypes = {

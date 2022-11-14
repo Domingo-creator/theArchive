@@ -16,5 +16,6 @@
 
 .archive-gallery-fit img:hover, .archive-gallery-fit .highlight {
     opacity: 1;
-    filter: alpha(opacity=100)
+    filter: alpha(opacity=100);
+    cursor: pointer;
 }

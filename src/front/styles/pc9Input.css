@@ -98,3 +98,26 @@
   border: solid 1px #f3f3f3;
   background-color: #f3f3f3;
 }
+
+.pc9-error-modal {
+  color: red;
+  position: absolute;
+  height: 350px;
+  width:60%;
+  background-color: whitesmoke;
+  border: black solid;
+  z-index: 3;
+  top: 305px;
+  right: 20px;
+  font-size: 12px;
+}
+
+.pc9-list {
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 280px;
+  margin: 5px 10px;
+
+}

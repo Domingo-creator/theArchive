@@ -1,12 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import wLImg from "../../../../img/PC9-W26_L28.png";
 import '../../../../styles/archive_home/archive_gallery/archive_gallery_measurements.css'
 
 const ArchiveGalleryMeasurements = ({waistInput, lengthInput, updateWaistInput, updateLengthInput, submitSelections}) => {
-    
+
     const validateInputs = () => {
-        if(typeof waistInput == 'number' && typeof lengthInput == 'number') {
+        return !Number.isNaN(parseInt(waistInput)) && !Number.isNaN(parseInt(lengthInput))
+    }
+
+    const submitMeasurements = () => {
+        if(validateInputs()) {
             submitSelections();
         }
     }
@@ -32,12 +35,9 @@ const ArchiveGalleryMeasurements = ({waistInput, lengthInput, updateWaistInput, 
                         />
                     </label>
                 </div>
-                <Link to='/jeans' onClick={submitSelections} className='link-button'>
-                    <button
-                    button className='gallery-next-button' onClick={() => validateInputs()}>
+                    <button className={validateInputs() ? 'gallery-next-button' : 'gallery-next-button disabled'} onClick={() => submitMeasurements()}>
                         Submit
                     </button>
-                </Link>
             </div>
         </div>
     )

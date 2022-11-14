@@ -20,6 +20,7 @@ function MatchBar() {
   console.log("waistHomeAvg", waistHomeAvg);
   const waistAvgCalc = (waistHomeAvg - waistStoreAvg) / 100;
   console.log(waistAvgCalc, "calc");
+  
   const [matchBarMargin, setmatchBarMargin] = useState(
     waistHomeAvg == waistStoreAvg
       ? 122

@@ -18,3 +18,9 @@
     background-color: #0a0b20;
 
 }
+
+.gallery-next-button.disabled {
+    background-color: #f3f3f3;
+    color: #b1b1b1;
+    cursor: default;
+}

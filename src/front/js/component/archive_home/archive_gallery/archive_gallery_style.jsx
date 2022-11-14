@@ -29,7 +29,7 @@ const ArchiveGalleryStyle = ({style, updateStyle, advanceGallery}) => {
                     </div>
                 ))}
             </div>
-            <button className='gallery-next-button' onClick={() => advanceGallery(style)}>Next</button>
+            <button className={style ? 'gallery-next-button': 'gallery-next-button disabled'} onClick={() => advanceGallery(style)}>Next</button>
         </div>
     )
 }

@@ -19,5 +19,7 @@
 
 .archive-gallery-style img:hover, .archive-gallery-style .highlight {
     opacity: 1;
-    filter: alpha(opacity=100)
+    filter: alpha(opacity=100);
+    cursor: pointer;
+
 }

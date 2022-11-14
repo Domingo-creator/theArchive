@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import '../../styles/footer.css'
+import FooterImage from '../../img/footer_image.png'
 
 const Footer = ({}) => {
   const [email, setEmail] = useState();
@@ -8,28 +9,30 @@ const Footer = ({}) => {
 
   return (
     <footer className="footer">
-      <div>#LIVEINLEVIS</div>
-      <div>
-          <img src=''/>
+      <div className='footer-header'>#LIVEINLEVIS</div>
+      <div className="footer-image">
+          <img src={FooterImage}/>
       </div>
-      <div>
+      <div className='footer-large'>
         <div>Shipping</div>
         <div>20% OFF + FREE</div>
       </div>
-      <div>For All New Levi's Email Subscribers.</div>
+      <div className="footer-small">For All New Levi's Email Subscribers.</div>
       <input
         value={email}
         onChange={(e) => updateEmail(e)}
         placeholder="Email"
       />
-      <div>
+      <div className='footer-small'>
         <div>Send me news and offers from the LS&Co. Group of Companies. I</div>
         <div>can <Link >unsubscribe</Link></div>
         <div>at any time. I have read the LS&Co. <Link>Privacy Policy.</Link> Offer details,</div>
         <div>financial incentives and exclusions available <Link>here</Link></div>
       </div>
-      <button>Sign Up</button>
-      <div>
+      <div className="center">
+        <button>Sign Up</button>
+      </div>
+      <div className='footer-medium'>
         <div>Special Discounts</div>
         <div>Support</div>
         <div>Company</div>

@@ -12,4 +12,5 @@
 
 .archive-gallery-wash img:hover, .archive-gallery-wash .highlight {
  outline: black 10px solid;
+ cursor: pointer;
 }

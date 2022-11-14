@@ -3,3 +3,39 @@
     background-color: lightgray;
     margin-top: 30px;
 }
+
+.footer-header {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.footer-image {
+    text-align: center;
+}
+
+.footer-large {
+    font-size: 29px;
+    font-weight: bold;
+}
+
+.footer-medium {
+    font-size: 24px;
+}
+
+.footer-small {
+    font-size: 12px;
+}
+
+.footer button {
+    width: 339px;
+    height: 45px;
+    background-color: #303030;
+    color: white;
+    font-size: 14px;
+}
+
+.center {
+    text-align: center;
+}

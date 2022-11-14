@@ -24,7 +24,7 @@ const ArchiveGalleryWash = ({ wash, updateWash, advanceGallery}) => {
                     </div>
                 ))}
             </div>
-            <button className='gallery-next-button' onClick={() => advanceGallery(wash)}>Next</button>
+            <button className={wash ? 'gallery-next-button' : 'gallery-next-button disabled'} onClick={() => advanceGallery(wash)}>Next</button>
         </div>
     )
 }

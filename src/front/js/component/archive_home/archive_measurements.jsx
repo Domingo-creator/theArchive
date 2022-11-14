@@ -19,11 +19,13 @@ const ArchiveMeasurements = ({}) => {
             actions.addHip(hip)
             actions.addWaist(waist)
             actions.addLength(inseam)
+
         }
     }
 
     const checkValidations = () => {
-
+        return !Number.isNaN(parseInt(waist)) && !Number.isNaN(parseInt(inseam)) && !Number.isNaN(parseInt(hip))
+        
     }
 
     return (
@@ -73,7 +75,7 @@ const ArchiveMeasurements = ({}) => {
                     <img src={measurementImage}/>
                 </div>
             </div>
-            <Link to='/jeans' onClick={handleSubmit}>Submit</Link>
+            <button className={checkValidations() ? "submit-measurements-button" : "submit-measurements-button disabled"}  onClick={handleSubmit}>Submit</button>
         </div>
     )
 }

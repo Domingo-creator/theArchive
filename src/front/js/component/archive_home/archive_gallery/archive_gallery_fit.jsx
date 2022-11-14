@@ -37,7 +37,7 @@ const ArchiveGalleryFit = ({fit, updateFit, advanceGallery}) => {
                     </div>
                 ))}
             </div>
-            <button className='gallery-next-button' onClick={() => advanceGallery(fit)}>Next</button>
+            <button className={fit ? 'gallery-next-button' : 'gallery-next-button disabled'} onClick={() => advanceGallery(fit)}>Next</button>
         </div>
     )
 }

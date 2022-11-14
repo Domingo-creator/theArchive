@@ -5,6 +5,7 @@ import ArchiveGalleryMeasurements from './archive_gallery_measurements';
 import ArchiveGalleryStyle from './archive_gallery_style';
 import ArchiveGalleryWash from './archive_gallery_wash';
 import '../../../../styles/archive_home/archive_gallery/archive_gallery.css'
+import { useNavigate } from 'react-router-dom';
 
 const ArchiveGallery = ({}) => {
     const headlines = [ "WHAT IS YOUR JEAN STYLE", 
@@ -18,6 +19,7 @@ const ArchiveGallery = ({}) => {
     const [lengthInput, setLengthInput] = useState();
     const [waistInput, setWaistInput] = useState();
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate()
 
     const updateStyle = (selectedStyle) => setStyle(selectedStyle)       
     const updateFit = (selectedFit) => setFit(selectedFit)    
@@ -40,6 +42,7 @@ const ArchiveGallery = ({}) => {
         actions.addLength(lengthInput)
         actions.addPc9Match(selectionObject);
         sessionStorage.setItem('archiveFilterOn', true);
+        navigate('../jeans')
     }
 
     const getCurrentCategoryList = () => {

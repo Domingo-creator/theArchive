@@ -83,7 +83,7 @@ function WaistLengthInput(props) {
                   if (e.keyCode == 13) {
                     props.actionWaist(formik.values.waistInput);
                     props.actionLength(formik.values.lengthInput);
-                    navigate("/pc9");
+                    navigate("/archive/pc9/pc9");
                   }
                 }}
               />
@@ -97,11 +97,11 @@ function WaistLengthInput(props) {
               onClick={() => {
                 props.actionWaist(formik.values.waistInput);
                 props.actionLength(formik.values.lengthInput);
+                navigate('/archive/pc9/pc9')
               }}
               className=" mx-auto mt-5 submitBtn"
               type="submit"
-            >
-              <Link to="/pc9">Submit</Link>
+            >Submit
             </button>
           </div>
         </div>

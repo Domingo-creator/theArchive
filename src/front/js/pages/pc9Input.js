@@ -133,7 +133,7 @@ const validate = Yup.object({
                     .Identifier;
                 formik.setFieldValue("pc9Input", randomPc9);
               }}
-              className="btn p-1 testBtn text-light ms-2"
+              className="btn p-1 testBtn text-light ms-2 get-pc9-button"
             >
               Give me PC9
             </button>
